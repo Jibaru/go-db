@@ -1,0 +1,25 @@
+version: "3"
+services:
+  godb_postgres_service:
+    image: "postgres"
+    container_name: "go_db_postgres"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - /var/lib/postgresql/data/pgdata:/var/lib/postgresql/data
+  godb_mysql_service:
+    image: mysql:8
+    container_name: "go_db_mysql"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DB}
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - ~/apps/mysql:/var/lib/mysql
